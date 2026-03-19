@@ -1,11 +1,11 @@
 ## Projekty
 
-| Nazwa projektu                  | Opis                                       | Poziom      |
-|---------------------------------|--------------------------------------------|-------------|
-| Kalkulator terminalowy          | Prosty kalkulator działający w konsoli     | Beginner    |
-| Gra zgadywanka (1–10)           | Gra losowa z liczbą do odgadnięcia         | Beginner    |
-| Licznik liter w słowie          | Liczy wystąpienia liter w podanym słowie   | Beginner    |
-| Piramida liter                  | Tworzy piramide od podanej litery          | Beginner    |
-| System rejestracji klientów     | Dodawanie, edycja, usuwanie klientów       | Junior      |
-| Kółko i krzyżyk                 | Gra z komputerem losowym lub podstawową AI | Junior      |
-| Kodowanie w Morse’a             | Koduje i dekoduje tekst w alfabecie Morse  | Junior      |
+| Project name                    | Description                                        | Level       |
+|---------------------------------|----------------------------------------------------|-------------|
+| Terminal Calculator             | Simple calculator running in the console           | Beginner    |
+| Number Guessing Game (1–10)     | Game where you guess a randomly generated number   | Beginner    |
+| Letter Counter                  | Counts occurrences of letters in a given word      | Beginner    |
+| Letter Pyramid                  | Creates a pyramid from a given letter              | Beginner    |
+| Customer Registration System    | Add, edit and delete customers                     | Junior      |
+| Tic-Tac-Toe                     | Game with a random or basic AI opponent            | Junior      |
+| Morse Code Encoder/Decoder      | Encodes and decodes text in Morse code             | Junior      |
