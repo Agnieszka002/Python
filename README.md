@@ -8,4 +8,4 @@
 | [Letter Pyramid](https://github.com/Agnieszka002/Python/tree/main/Letter%20Pyramid)                  | Creates a pyramid from a given letter              | Beginner    |
 | [Customer Registration System](https://github.com/Agnieszka002/Python/tree/main/Customer%20Registration%20System)    | Add, edit and delete customers                     | Junior      |
 | [Tic-Tac-Toe](https://github.com/Agnieszka002/Python/tree/main/Tic-Tac-Toe)                     | Game with a random or basic AI opponent            | Junior      |
-| Morse Code Encoder/Decoder      | Encodes and decodes text in Morse code             | Junior      |
+| [Morse Code Encoder/Decoder](https://github.com/Agnieszka002/Python/tree/main/Morse%20Code%20Encoder-Decoder)      | Encodes and decodes text in Morse code             | Junior      |
