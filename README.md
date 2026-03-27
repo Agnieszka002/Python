@@ -11,8 +11,8 @@
 | [Morse Code Encoder/Decoder](https://github.com/Agnieszka002/Python/tree/main/Morse%20Code%20Encoder-Decoder)      | Encodes and decodes text in Morse code             | Junior      |
 
 *HOW TO RUN THE CODE?*  
-  - Simply copy and paste the code to your IDE!  
-  - If you don't have IDE or just didn't want to download any, this is the free and online one I recommend:  
-  - [Online Python](https://www.online-python.com)
+    Simply copy and paste the code to your IDE!  
+    If you don't have IDE or just didn't want to download any, this is the free and online one I recommend:  
+    [Online Python](https://www.online-python.com)
 
 
