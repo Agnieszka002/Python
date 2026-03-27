@@ -1,202 +1,202 @@
-# System rejestracji klientów
+# Customer registration system
 import random
 from datetime import datetime
 
 system = []
 
-# --- funkcje ---
+# --- functions ---
 
-def dodawanie_klientow():
+def add_customers():
     while True:
-        imie = input("Podaj imię: ").strip()
-        if imie == "":
-            print("Nie podano imienia! Wróć do menu.\n")
+        first_name = input("Enter first name: ").strip()
+        if first_name == "":
+            print("No first name provided! Returning to menu.\n")
             return
 
-        nazwisko = input("Podaj nazwisko: ").strip()
-        if nazwisko == "":
-            print("Nie podano nazwiska! Wróć do menu.\n")
+        last_name = input("Enter last name: ").strip()
+        if last_name == "":
+            print("No last name provided! Returning to menu.\n")
             return
 
         while True:
-            urodziny = input("Podaj date urodzin dd.mm.yyyy: ").strip()
-            if urodziny == "":
-                print("Nie podano daty! Wróć do menu.\n")
+            birth_date = input("Enter birth date dd.mm.yyyy: ").strip()
+            if birth_date == "":
+                print("No date provided! Returning to menu.\n")
                 return
             try:
-                datetime.strptime(urodziny, "%d.%m.%Y")
+                datetime.strptime(birth_date, "%d.%m.%Y")
                 break
             except ValueError:
-                print("Zły format daty! Spróbuj jeszcze raz.\n")
+                print("Invalid date format! Try again.\n")
 
-        # Generowanie unikalnego indexu
+        # Generate unique index
         index = random.randint(1000, 9999)
         while any(k["Index"] == index for k in system):
             index = random.randint(1000, 9999)
 
-        klient = {"Imie": imie, "Nazwisko": nazwisko, "Urodziny": urodziny, "Index": index}
-        system.append(klient)
+        customer = {"FirstName": first_name, "LastName": last_name, "BirthDate": birth_date, "Index": index}
+        system.append(customer)
 
-        print("\nDodano klienta:")
+        print("\nCustomer added:")
         print("----------------------")
-        print(f"ID: {klient['Index']}")
-        print(f"Imię: {klient['Imie']}")
-        print(f"Nazwisko: {klient['Nazwisko']}")
-        print(f"Urodziny: {klient['Urodziny']}")
+        print(f"ID: {customer['Index']}")
+        print(f"First name: {customer['FirstName']}")
+        print(f"Last name: {customer['LastName']}")
+        print(f"Birth date: {customer['BirthDate']}")
         print("----------------------")
         
-        dalej = input("Czy chcesz dodać kolejną osobę? (t/n): ").lower()
-        if dalej != "t":
+        continue_choice = input("Do you want to add another person? (y/n): ").lower()
+        if continue_choice != "y":
             break
 
 
-def edycja_klienta():
+def edit_customer():
     try:
-        index = int(input("Podaj index klienta: ").strip())
+        index = int(input("Enter customer index: ").strip())
     except ValueError:
-        print("Niepoprawny index! Wróć do menu.\n")
+        print("Invalid index! Returning to menu.\n")
         return
 
-    for klient in system:
-        if klient["Index"] == index:
-            print("Znaleziono klienta:", klient)
+    for customer in system:
+        if customer["Index"] == index:
+            print("Customer found:", customer)
 
-            nowe_imie = input("Podaj nowe imię klienta (Enter = brak zmian): ").strip()
-            if nowe_imie != "":
-                klient["Imie"] = nowe_imie
+            new_first_name = input("Enter new first name (Enter = no change): ").strip()
+            if new_first_name != "":
+                customer["FirstName"] = new_first_name
 
-            nowe_nazwisko = input("Podaj nowe nazwisko klienta (Enter = brak zmian): ").strip()
-            if nowe_nazwisko != "":
-                klient["Nazwisko"] = nowe_nazwisko
+            new_last_name = input("Enter new last name (Enter = no change): ").strip()
+            if new_last_name != "":
+                customer["LastName"] = new_last_name
 
-            nowa_data_ur = input("Podaj nową datę urodzenia (Enter = brak zmian): ").strip()
-            if nowa_data_ur != "":
+            new_birth_date = input("Enter new birth date (Enter = no change): ").strip()
+            if new_birth_date != "":
                 try:
-                    datetime.strptime(nowa_data_ur, "%d.%m.%Y")
-                    klient["Urodziny"] = nowa_data_ur
+                    datetime.strptime(new_birth_date, "%d.%m.%Y")
+                    customer["BirthDate"] = new_birth_date
                 except ValueError:
-                    print("Niepoprawny format daty! Nie zmieniono daty.\n")
+                    print("Invalid date format! Date not changed.\n")
 
-            print("Zaktualizowano!")
+            print("Updated!")
             return
 
-    print("Nie znaleziono klienta.\n")
+    print("Customer not found.\n")
 
 
-def usuwanie_klienta():
+def delete_customer():
     try:
-        index = int(input("Podaj index klienta: ").strip())
+        index = int(input("Enter customer index: ").strip())
     except ValueError:
-        print("Niepoprawny index! Wróć do menu.\n")
+        print("Invalid index! Returning to menu.\n")
         return
 
-    for klient in system:
-        if klient["Index"] == index:
-            system.remove(klient)
-            print("Usunięto klienta.")
+    for customer in system:
+        if customer["Index"] == index:
+            system.remove(customer)
+            print("Customer deleted.")
             return
 
-    print("Nie znaleziono klienta.\n")
+    print("Customer not found.\n")
 
 
-def wyswietlanie_klientow():
+def show_customers():
     if len(system) == 0:
-        print("Brak klientów w systemie.\n")
+        print("No customers in the system.\n")
     else:
-        for klient in system:
+        for customer in system:
             print("----------------------")
-            print(f"ID: {klient['Index']}")
-            print(f"Imię: {klient['Imie']}")
-            print(f"Nazwisko: {klient['Nazwisko']}")
-            print(f"Urodziny: {klient['Urodziny']}")
+            print(f"ID: {customer['Index']}")
+            print(f"First name: {customer['FirstName']}")
+            print(f"Last name: {customer['LastName']}")
+            print(f"Birth date: {customer['BirthDate']}")
             print("----------------------")
 
 
-def wyszukiwanie_klientow():
-    dane = input("Podaj dane klienta: ").strip()
-    if dane == "":
-        print("Nie podano danych! Wróć do menu.\n")
+def search_customers():
+    data = input("Enter customer data: ").strip()
+    if data == "":
+        print("No data provided! Returning to menu.\n")
         return
 
-    znaleziono = False
+    found = False
 
-    for klient in system:
-        if klient["Imie"].lower() == dane.lower():
+    for customer in system:
+        if customer["FirstName"].lower() == data.lower():
             print("----------------------")
-            print(f"ID: {klient['Index']}")
-            print(f"Imię: {klient['Imie']}")
-            print(f"Nazwisko: {klient['Nazwisko']}")
-            print(f"Urodziny: {klient['Urodziny']}")
+            print(f"ID: {customer['Index']}")
+            print(f"First name: {customer['FirstName']}")
+            print(f"Last name: {customer['LastName']}")
+            print(f"Birth date: {customer['BirthDate']}")
             print("----------------------")
-            znaleziono = True
+            found = True
         
-        if klient["Nazwisko"].lower() == dane.lower():
+        if customer["LastName"].lower() == data.lower():
             print("----------------------")
-            print(f"ID: {klient['Index']}")
-            print(f"Imię: {klient['Imie']}")
-            print(f"Nazwisko: {klient['Nazwisko']}")
-            print(f"Urodziny: {klient['Urodziny']}")
+            print(f"ID: {customer['Index']}")
+            print(f"First name: {customer['FirstName']}")
+            print(f"Last name: {customer['LastName']}")
+            print(f"Birth date: {customer['BirthDate']}")
             print("----------------------")
-            znaleziono = True
+            found = True
         
-        if klient["Urodziny"] == dane:
+        if customer["BirthDate"] == data:
             print("----------------------")
-            print(f"ID: {klient['Index']}")
-            print(f"Imię: {klient['Imie']}")
-            print(f"Nazwisko: {klient['Nazwisko']}")
-            print(f"Urodziny: {klient['Urodziny']}")
+            print(f"ID: {customer['Index']}")
+            print(f"First name: {customer['FirstName']}")
+            print(f"Last name: {customer['LastName']}")
+            print(f"Birth date: {customer['BirthDate']}")
             print("----------------------")
-            znaleziono = True
+            found = True
         
-        if str(klient["Index"]) == dane:
+        if str(customer["Index"]) == data:
             print("----------------------")
-            print(f"ID: {klient['Index']}")
-            print(f"Imię: {klient['Imie']}")
-            print(f"Nazwisko: {klient['Nazwisko']}")
-            print(f"Urodziny: {klient['Urodziny']}")
+            print(f"ID: {customer['Index']}")
+            print(f"First name: {customer['FirstName']}")
+            print(f"Last name: {customer['LastName']}")
+            print(f"Birth date: {customer['BirthDate']}")
             print("----------------------")
-            znaleziono = True
+            found = True
 
-    if not znaleziono:
-        print("Nie znaleziono klienta.\n")
+    if not found:
+        print("Customer not found.\n")
 
 
-def zapis_do_pliku():
-    with open("klienci.txt", "w") as plik:
-        for klient in system:
-            plik.write(str(klient) + "\n")
-    print("Zapisano do pliku.")
+def save_to_file():
+    with open("customers.txt", "w") as file:
+        for customer in system:
+            file.write(str(customer) + "\n")
+    print("Saved to file.")
 
 
 # --- menu ---
 
 while True:
-    print("Co chcesz zrobić?\n")
-    print("1 - Dodaj klienta")
-    print("2 - Edytuj klienta")
-    print("3 - Usuń klienta")
-    print("4 - Wyświetl klientów")
-    print("5 - Wyszukaj klienta")
-    print("6 - Zapisz do pliku")
-    print("0 - Wyjście")
+    print("What do you want to do?\n")
+    print("1 - Add customer")
+    print("2 - Edit customer")
+    print("3 - Delete customer")
+    print("4 - Show customers")
+    print("5 - Search customer")
+    print("6 - Save to file")
+    print("0 - Exit")
 
-    wybrana_akcja = input("\nWybierz opcję: ").strip()
+    selected_action = input("\nChoose option: ").strip()
 
-    if wybrana_akcja == "1":
-        dodawanie_klientow()
-    elif wybrana_akcja == "2":
-        edycja_klienta()
-    elif wybrana_akcja == "3":
-        usuwanie_klienta()
-    elif wybrana_akcja == "4":
-        wyswietlanie_klientow()
-    elif wybrana_akcja == "5":
-        wyszukiwanie_klientow()
-    elif wybrana_akcja == "6":
-        zapis_do_pliku()
-    elif wybrana_akcja == "0":
+    if selected_action == "1":
+        add_customers()
+    elif selected_action == "2":
+        edit_customer()
+    elif selected_action == "3":
+        delete_customer()
+    elif selected_action == "4":
+        show_customers()
+    elif selected_action == "5":
+        search_customers()
+    elif selected_action == "6":
+        save_to_file()
+    elif selected_action == "0":
         break
     else:
-        print("Nieznane działanie.\n")
+        print("Unknown action.\n")
 
-print("Koniec programu")
+print("End of program")
