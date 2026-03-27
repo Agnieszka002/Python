@@ -10,7 +10,7 @@
 | [Tic-Tac-Toe](https://github.com/Agnieszka002/Python/tree/main/Tic-Tac-Toe)                     | Game with a random or basic AI opponent            | Junior      |
 | [Morse Code Encoder/Decoder](https://github.com/Agnieszka002/Python/tree/main/Morse%20Code%20Encoder-Decoder)      | Encodes and decodes text in Morse code             | Junior      |
 
-*HOW TO RUN THE CODE?*  
+**HOW TO RUN THE CODE?**  
 &nbsp;&nbsp;&nbsp;&nbsp;Simply copy and paste the code to your IDE!  
 &nbsp;&nbsp;&nbsp;&nbsp;If you don't have IDE or just didn't want to download any, this is the free and online one I recommend:  
 &nbsp;&nbsp;&nbsp;&nbsp;[Online Python](https://www.online-python.com)
