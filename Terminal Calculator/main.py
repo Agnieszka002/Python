@@ -1,17 +1,17 @@
-def kalkulator(a, b, dzialanie):
-    if dzialanie == '+':
+def calculator(a, b, function):
+    if function == '+':
         return a + b
-    elif dzialanie == '-':
+    elif function == '-':
         return a - b
-    elif dzialanie == '*':
+    elif function == '*':
         return a * b
-    elif dzialanie == '/':
+    elif function == '/':
         return a / b
     else:
-        return "Nieznane działanie"
+        return "Unknown function"
 
-x = float(input("Podaj pierwszą liczbę: "))
-y = float(input("Podaj drugą liczbę: "))
-op = input("Podaj działanie (+, -, *, /): ")
+x = float(input("Enter the first number: "))
+y = float(input("Enter the second number: "))
+op = input("Enter the function (+, -, *, /): ")
 
-print(f"Wynik: {kalkulator(x, y, op)}")
+print(f"Result: {calculator(x, y, op)}")
