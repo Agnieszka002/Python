@@ -1,90 +1,90 @@
 import random
 
-# --- Plansza ---
-plansza = {
+# --- Board ---
+board = {
     "A1": " ", "A2": " ", "A3": " ",
     "B1": " ", "B2": " ", "B3": " ",
     "C1": " ", "C2": " ", "C3": " "
 }
 
-# --- Funkcja do wyświetlania planszy ---
-def pokaz_plansze():
-    print(f" {plansza['A1']} | {plansza['A2']} | {plansza['A3']}")
+# --- Function to display the board ---
+def show_board():
+    print(f" {board['A1']} | {board['A2']} | {board['A3']}")
     print("---+---+---")
-    print(f" {plansza['B1']} | {plansza['B2']} | {plansza['B3']}")
+    print(f" {board['B1']} | {board['B2']} | {board['B3']}")
     print("---+---+---")
-    print(f" {plansza['C1']} | {plansza['C2']} | {plansza['C3']}")
+    print(f" {board['C1']} | {board['C2']} | {board['C3']}")
     print()
 
-# --- Lista zwycięskich kombinacji ---
-kombinacje = [
+# --- List of winning combinations ---
+combinations = [
     ["A1","A2","A3"], ["B1","B2","B3"], ["C1","C2","C3"],
     ["A1","B1","C1"], ["A2","B2","C2"], ["A3","B3","C3"],
     ["A1","B2","C3"], ["A3","B2","C1"]
 ]
 
-# --- Funkcja sprawdzająca zwycięzcę ---
-def sprawdz_zwyciezce():
-    for k in kombinacje:
-        if plansza[k[0]] == plansza[k[1]] == plansza[k[2]] != " ":
-            return plansza[k[0]]  # zwraca zwycięski znak
+# --- Function to check winner ---
+def check_winner():
+    for c in combinations:
+        if board[c[0]] == board[c[1]] == board[c[2]] != " ":
+            return board[c[0]]  # returns winning symbol
     return None
 
-# --- Funkcja AI komputera ---
-def ruch_komputera():
-    # 50% szansy na blokadę gracza, 50% losowy ruch
+# --- Computer AI function ---
+def computer_move():
+    # 50% chance to block player, 50% random move
     if random.random() < 0.5:
-        # Próba zablokowania gracza, jeśli ma 2 w linii
-        for k in kombinacje:
-            values = [plansza[p] for p in k]
-            if values.count(znak_gracza) == 2 and values.count(" ") == 1:
-                return k[values.index(" ")]
-    # Losowy ruch
-    puste_pola = [k for k, v in plansza.items() if v == " "]
-    return random.choice(puste_pola)
+        # Try to block player if they have 2 in a row
+        for c in combinations:
+            values = [board[p] for p in c]
+            if values.count(player_symbol) == 2 and values.count(" ") == 1:
+                return c[values.index(" ")]
+    # Random move
+    empty_fields = [k for k, v in board.items() if v == " "]
+    return random.choice(empty_fields)
 
-# --- Wybór znaku przez gracza ---
-znak_gracza = input("Jakim znakiem chcesz grać? x czy o?: ").lower()
-while znak_gracza not in ["x", "o"]:
-    znak_gracza = input("Niepoprawny znak. Wpisz x lub o: ").lower()
+# --- Player chooses symbol ---
+player_symbol = input("Which symbol do you want to play? x or o?: ").lower()
+while player_symbol not in ["x", "o"]:
+    player_symbol = input("Invalid symbol. Enter x or o: ").lower()
 
-znak_komputera = "o" if znak_gracza == "x" else "x"
+computer_symbol = "o" if player_symbol == "x" else "x"
 
-kolejnosc_input = input(f"Super! Ja będę {znak_komputera}. Kto zaczyna, ja czy ty? (Wpisz 'ja' lub 'ty'): ").lower()
-while kolejnosc_input not in ["ja", "ty"]:
-    kolejnosc_input = input("Niepoprawna odpowiedź. Wpisz 'ja' lub 'ty': ").lower()
+turn_input = input(f"Great! I will be {computer_symbol}. Who starts, me or you? (Type 'me' or 'you'): ").lower()
+while turn_input not in ["me", "you"]:
+    turn_input = input("Invalid answer. Type 'me' or 'you': ").lower()
 
-kolejnosc = "gracz" if kolejnosc_input == "ja" else "komputer"
+turn = "player" if turn_input == "me" else "computer"
 
-# --- Główna pętla gry ---
-gra_trwa = True
-while gra_trwa:
-    if kolejnosc == "gracz":  # ruch gracza
-        ruch = input("Podaj pole, np. A1, B2: ").upper()
-        if ruch in plansza and plansza[ruch] == " ":
-            plansza[ruch] = znak_gracza
-            zwyciezca = sprawdz_zwyciezce()
-            if zwyciezca:
-                pokaz_plansze()
-                print(f"Gratulacje! {zwyciezca} wygrał!")
+# --- Main game loop ---
+game_on = True
+while game_on:
+    if turn == "player":  # player move
+        move = input("Enter position, e.g. A1, B2: ").upper()
+        if move in board and board[move] == " ":
+            board[move] = player_symbol
+            winner = check_winner()
+            if winner:
+                show_board()
+                print(f"Congratulations! {winner} wins!")
                 break
-            elif " " not in plansza.values():
-                pokaz_plansze()
-                print("Remis!")
+            elif " " not in board.values():
+                show_board()
+                print("Draw!")
                 break
-            kolejnosc = "komputer"
+            turn = "computer"
         else:
-            print("Niepoprawny ruch, spróbuj jeszcze raz.")
-    else:  # ruch komputera
-        ruch = ruch_komputera()
-        plansza[ruch] = znak_komputera
-        print(f"Komputer wykonał ruch: {ruch}")
-        pokaz_plansze()
-        zwyciezca = sprawdz_zwyciezce()
-        if zwyciezca:
-            print(f"Komputer wygrał! ({zwyciezca})")
+            print("Invalid move, try again.")
+    else:  # computer move
+        move = computer_move()
+        board[move] = computer_symbol
+        print(f"Computer made a move: {move}")
+        show_board()
+        winner = check_winner()
+        if winner:
+            print(f"Computer wins! ({winner})")
             break
-        elif " " not in plansza.values():
-            print("Remis!")
+        elif " " not in board.values():
+            print("Draw!")
             break
-        kolejnosc = "gracz"
+        turn = "player"
